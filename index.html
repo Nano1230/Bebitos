@@ -1,1 +1,250 @@
-
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Historia de Amor</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #fff0f6 0%, #ffe3ec 100%);
+      min-height: 100vh;
+      font-family: 'Segoe UI', 'Quicksand', Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      user-select: none;
+      -webkit-user-select: none;
+      cursor: pointer;
+    }
+    #content {
+      text-align: center;
+      max-width: 90vw;
+      font-size: 2.2rem;
+      line-height: 1.4;
+      background: rgba(255,255,255,0.85);
+      border-radius: 24px;
+      padding: 2.5rem 1.5rem;
+      box-shadow: 0 4px 32px rgba(215,38,96,0.10);
+      color: #d72660;
+      opacity: 0;
+      transform: translateY(30px) scale(0.98);
+      transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1);
+      margin-bottom: 2rem;
+      min-height: 5rem;
+    }
+    #content.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    #hint {
+      font-size: 1rem;
+      color: #bdbdbd;
+      margin-top: 1rem;
+      letter-spacing: 0.05em;
+      user-select: none;
+    }
+    .qualities {
+      font-size: 1.8rem;
+      margin: 1rem 0;
+      line-height: 1.6;
+    }
+    .qualities li {
+      margin: 0.5rem 0;
+      list-style: none;
+    }
+    .qualities li:before {
+      content: "💖 ";
+      margin-right: 0.5rem;
+    }
+    /* Corazones flotando */
+    .heart {
+      position: fixed;
+      bottom: -40px;
+      font-size: 2.2rem;
+      color: #ff6f91;
+      opacity: 0.7;
+      pointer-events: none;
+      animation: floatHeart 6s linear infinite;
+    }
+    @keyframes floatHeart {
+      0% {
+        transform: translateY(0) scale(1) rotate(-10deg);
+        opacity: 0.7;
+      }
+      80% {
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-110vh) scale(1.2) rotate(10deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="content">Toca la pantalla para iniciar esta historia bebita</div>
+  <div id="hint">(Toca en cualquier parte para continuar)</div>
+  <script>
+    // Historia de amor personalizada
+    const historia = [
+      'Érase una vez un bebo y una beba que se conocieron...',
+      
+      'Sin saber que sería algo muy feliz para sus vidas.',
+      
+      'Uno es un bebo un poco tontito, pero la beba es la niña más especial...',
+      
+      `<div class="qualities">
+        <div>💖 Hermosa</div>
+        <div>💖 Talentosa</div>
+        <div>💖 Muy inteligente</div>
+        <div>💖 Atlética</div>
+      </div>`,
+      
+      `<div class="qualities">
+        <div>💖 Tan perfecta</div>
+        <div>💖 Muy estudiosa</div>
+        <div>💖 Muy lista</div>
+        <div>💖 Simplemente me encantas</div>
+      </div>`,
+      
+      `<div class="qualities">
+        <div>💖 Muy enojona también</div>
+        <div>💖 Muy preciosa</div>
+        <div>💖 Simplemente la bebé hermosa del bebo</div>
+      </div>`,
+      
+      'Y así comienza su gran historia de amor...',
+      
+      'Amándose el uno al otro en el día a día.',
+      
+      'Eligiéndose siempre a pesar de todos los obstáculos que han tenido que pasar.',
+      
+      'Estos bebitos también han tenido diferentes aventuras...',
+      
+      'Donde cada día que se ven es una nueva historia llena de amor.',
+      
+      'Tienen sus peleas y sus diferencias...',
+      
+      'Pero esto solo fortalece su relación.',
+      
+      'También tienen muchos sueños que cumplirán con el pasar de los años.',
+      
+      'Teniendo a Dios presente en sus vidas...',
+      
+      'Y apoyándose el uno al otro siempre.',
+      
+      '💕 Esta es su hermosa historia de amor 💕',
+      
+      // Mensaje personal del bebo a la beba
+      'Hola bebita 💕',
+      'Te amo mucho',
+      'Gracias por siempre estar conmigo',
+      'Gracias por hacer mis días más felices',
+      '¿Quieres que te diga un secreto?',
+      'Eres el amor de mi vida',
+      'Ya te quiero ver',
+      'Porque soy tu bebito y te extraño mucho',
+      'Créeme que estos días han parecido eternos',
+      'Sé como te has sentido',
+      'Tal vez un poco solita',
+      'Sé que te hace falta mi compañía',
+      'Y créeme que a mí también la tuya',
+      'No sabes cómo me siento sin ti',
+      'Muchas veces tampoco te lo demuestro',
+      'Porque cuando me dices que me extrañas',
+      'Simplemente no quiero hacer que se vuelva un momento triste',
+      'Siempre trato y trataré de alegrarte',
+      'Aunque me esté doliendo demasiado por dentro',
+      'Perdóname por no ser el mejor novio',
+      'Pero créeme que cada día trato de ser mejor',
+      'Y solo por ti bebé hermosa',
+      '¿Te digo otro secretito?',
+      'Antes de irme de viaje',
+      'Cuando salí de clases',
+      'Me mandaste una fotito cuando llegaste a casa de tu abue',
+      'Una foto tuya y de Mila',
+      'No tienes una idea de cómo se me quedó guardada esa foto en mi cabeza',
+      'Lo primero que pensé fue',
+      'Soy un hombre que no solo es familia de mis hermanos y papás',
+      'Sino también de mi novia y de nuestra hija Mila',
+      'Créeme que saltó mi corazón de felicidad el ver la foto',
+      'Teniendo en mente que ustedes lo son todo para mí',
+      'Las amo demasiado a las 2',
+      'Pero no le digas a Mila porque sabes que se pone celosa',
+      'Pero a ti te amo muchísimo más infinitamente mi bebita',
+      'Como no tienes una idea',
+      'Ustedes son mi familia',
+      'Es como si tuviéramos una bebita',
+      'Y yo estoy acá',
+      'Extrañándolas en cada segundo',
+      'No paro de pensarlas en ningún momento',
+      'Son mi motivación del día a día',
+      'Gracias por sin siquiera darse cuenta',
+      'Alegrar mis días',
+      'Yo sé que me están esperando',
+      'Y cuando las vea las voy a abrazar como no tienen una idea',
+      'Y les diré cuánto las amo',
+      'Aunque más a ti bebita pero sabes',
+      'No solamente tú eres celosa',
+      'Quiero que sepas algo bebita',
+      'Yo te amo',
+      'Haría lo que fuera por ti',
+      'Espero ser lo mejor para ti',
+      'Como tú lo eres para mí',
+      'Ya te extraño bebé',
+      'Las veo muy pronto',
+      'Las amo 💕'
+    ];
+    
+    let index = -1;
+    const content = document.getElementById('content');
+    
+    function showNext() {
+      content.classList.remove('visible');
+      setTimeout(() => {
+        index++;
+        if (index >= historia.length) {
+          content.innerHTML = 'Fin de la historia. <br> ¡Toca para volver a empezar! 💕';
+          index = -1;
+        } else {
+          content.innerHTML = historia[index];
+        }
+        content.classList.add('visible');
+      }, 350);
+    }
+    
+    document.body.addEventListener('click', showNext);
+    document.body.addEventListener('touchstart', function(e) {
+      e.preventDefault();
+      showNext();
+    }, { passive: false });
+    
+    // Animación de corazones flotando
+    function randomBetween(a, b) {
+      return a + Math.random() * (b - a);
+    }
+    
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = randomBetween(5, 95) + 'vw';
+      heart.style.fontSize = randomBetween(1.5, 2.8) + 'rem';
+      heart.style.animationDuration = randomBetween(4, 8) + 's';
+      heart.innerHTML = '❤';
+      document.body.appendChild(heart);
+      setTimeout(() => {
+        heart.remove();
+      }, 8000);
+    }
+    
+    setInterval(createHeart, 900);
+    
+    // Mostrar animación inicial
+    setTimeout(() => content.classList.add('visible'), 200);
+  </script>
+</body>
+</html>
